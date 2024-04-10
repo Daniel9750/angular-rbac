@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RbacService } from './rbac.service';
+import { RbacService } from './rbac/rbac.service';
 import { RouterOutlet } from '@angular/router';
 import { Roles } from './types';
-import { IsGrantedDirective } from './is-granted.directive';
+import { IsGrantedDirective } from './is-granted/is-granted.directive';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       role: {
         id: 3,
         name: 'Administrator',
-        uid: 'USER',
+        uid: 'ADMINISTRATOR',
         extends: 2
       }
     });
