@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       role: {
         id: 3,
         name: 'Administrator',
-        uid: 'ADMINISTRATOR',
+        uid: 'USER',
         extends: 2
       }
     });
