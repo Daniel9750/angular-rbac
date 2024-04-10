@@ -1,5 +1,5 @@
 Main Page
-
+ 
 <div>
   <a routerLink="/admin" *isGranted="'ADMINISTRATOR'">Admin Panel</a>
 </div>
@@ -8,9 +8,6 @@ Main Page
 </div>
 <div *isGranted="'USER'">
   This text is visible for user members
-</div>
-<div *isGranted="'USER'; for: customUser">
-  Custom user text
 </div>
 
 <router-outlet></router-outlet>

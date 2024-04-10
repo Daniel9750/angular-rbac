@@ -3,7 +3,8 @@ import { RbacService } from './rbac.service';
 import { User } from './types';
 
 @Directive({
-  selector: '[isGranted]'
+  selector: '[isGranted]',
+  standalone: true
 })
 export class IsGrantedDirective implements OnInit {
   private _rbacService = inject(RbacService);

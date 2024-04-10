@@ -2,16 +2,19 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RbacService } from './rbac.service';
 import { RouterOutlet } from '@angular/router';
 import { Roles } from './types';
+import { IsGrantedDirective } from './is-granted.directive';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, IsGrantedDirective],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
   readonly rbacService = inject(RbacService);
+
 
   constructor() {
     // Assuming the roles and authenticated came from the server
@@ -35,17 +38,19 @@ export class AppComponent implements OnInit {
         extends: 2
       }
     ]);
+
     this.rbacService.setAuthenticatedUser({
       id: 1,
       name: 'User',
       role: {
         id: 3,
         name: 'Administrator',
-        uid: 'USER',
+        uid: 'ADMINISTRATOR',
         extends: 2
       }
     });
   }
+  
 
   ngOnInit() {
     if (this.rbacService.isGranted(Roles.ADMINISTRATOR)) {
