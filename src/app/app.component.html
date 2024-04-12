@@ -1,7 +1,7 @@
 Main Page
  
 <div>
-  <a routerLink="/admin" *isGranted="'ADMINISTRATOR'">Admin Panel</a>
+  <button routerLink="/admin"><a routerLink="/admin" *isGranted="'ADMINISTRATOR'">Admin Panel</a></button>
 </div>
 <div *isGranted="'STAFF'">
   This text is visible for staff members only

@@ -1,0 +1,17 @@
+div {
+    margin: 1.5%;
+  }
+  
+  a {
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 5%;
+    margin-bottom: 10px;
+  }
+  
+  div * {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ff0000;
+    border-radius: 5px;
+  }
