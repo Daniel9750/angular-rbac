@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { adminGuard } from './admin/admin.guard';
 
@@ -11,9 +10,3 @@ export const routes: Routes = [
     canActivate: [adminGuard]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
