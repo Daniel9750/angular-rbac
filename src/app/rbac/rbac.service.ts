@@ -14,8 +14,23 @@ export class RbacService {
    */
   setRoles(roles: Role[]) {
     for (const role of roles) {
-      this._roles.set(role.uid, this._flatten(role, roles));
+      const parentRoles = this._getParentRoles(role, roles);
+  
+      this._roles.set(role.uid, [...parentRoles, role.uid]);
     }
+  }
+  
+  private _getParentRoles(role: Role, allRoles: Role[]): string[] {
+    const results: string[] = [];
+  
+    for (const parentRole of allRoles) {
+      if (role.extends === parentRole.id) {
+        results.push(parentRole.uid);
+        results.push(...this._getParentRoles(parentRole, allRoles));
+      }
+    }
+  
+    return results;
   }
 
   /**
@@ -46,7 +61,6 @@ export class RbacService {
     if (!this._roles.has(user.role.uid)) {
       return false;
     }
-
     return this._roles.get(user.role.uid).includes(roleOrPermission);
   }
 
@@ -68,7 +82,6 @@ export class RbacService {
         }
       }
     }
-
     return results;
   }
 }

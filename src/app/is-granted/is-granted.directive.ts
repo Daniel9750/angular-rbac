@@ -1,4 +1,4 @@
-import { Directive, inject, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { RbacService } from '../rbac/rbac.service';
 import { User } from '../types';
 
@@ -7,11 +7,15 @@ import { User } from '../types';
   standalone: true
 })
 export class IsGrantedDirective implements OnInit {
-  private _rbacService = inject(RbacService);
-  private _templateRef = inject(TemplateRef);
-  private _viewContainer = inject(ViewContainerRef);
+  
   private _user!: User;
   private _roleOrPermission!: string;
+
+  constructor(
+    private _rbacService: RbacService, 
+    private _templateRef: TemplateRef<any>,
+    private _viewContainer: ViewContainerRef
+  ) {}
 
   @Input()
   set isGranted(roleOrPermission: string) {
@@ -21,12 +25,11 @@ export class IsGrantedDirective implements OnInit {
   @Input('isGrantedFor')
   set isGrantedFor(user: User) {
     this._user = user;
-  };
+  }
 
   ngOnInit() {
     if (this._rbacService.isGranted(this._roleOrPermission, this._user)) {
-      this._viewContainer.clear();
       this._viewContainer.createEmbeddedView(this._templateRef);
     }
-  }
+  }  
 }
